@@ -32,7 +32,7 @@ export default class Movie extends React.Component {
   };
   
   editMovie = () => {
-    this.props.history.push(`/update-movie/${this.props.match.params.id}`)
+    this.props.history.push(`/update-movie/${this.props.match.params.id}`);
   };
 
   render() {
