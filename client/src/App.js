@@ -4,6 +4,7 @@ import SavedList from "./Movies/SavedList";
 import MovieList from "./Movies/MovieList";
 import Movie from "./Movies/Movie";
 import { AddOrUpdateMovie } from './Movies/AddOrUpdateMovie';
+import 'bulma/css/bulma.css';
 
 const App = () => {
   const [savedList, setSavedList] = useState([]);
@@ -13,7 +14,7 @@ const App = () => {
   };
 
   return (
-    <>
+    <div>
       <SavedList list={savedList} />
       <Route exact path="/" component={MovieList} />
       <Route
@@ -34,7 +35,7 @@ const App = () => {
           return <AddOrUpdateMovie {...props} />;
         }}
       />
-    </>
+    </div>
   );
 };
 

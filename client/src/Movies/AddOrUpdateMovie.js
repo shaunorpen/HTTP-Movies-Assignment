@@ -29,8 +29,8 @@ export const AddOrUpdateMovie = (props) => {
     }, [props.match.params.id]);
   
     return (
-      <div>
-        <h2>{addOrEdit} Movie</h2>
+      <div className='section'>
+        <h2 className='title'>{addOrEdit} Movie</h2>
         <Formik key={initialValues.id}
           initialValues = {initialValues}
           validate = {values => {
@@ -81,27 +81,27 @@ export const AddOrUpdateMovie = (props) => {
         >
           {({ isSubmitting }) => (
             <Form>
-              <div>
-                <label htmlFor='title'>Title: </label>
-                <Field type='text' name='title' />
-                <ErrorMessage name='title' component='span' />
+              <div className='field'>
+                <label htmlFor='title' className='label'>Title: </label>
+                <Field type='text' name='title' className='input' />
+                <ErrorMessage name='title' component='span' className='help' />
               </div>
-              <div>
-                <label htmlFor='director'>Director: </label>
-                <Field type='text' name='director' />
-                <ErrorMessage name='director' component='span' />
+              <div className='field'>
+                <label htmlFor='director' className='label'>Director: </label>
+                <Field type='text' name='director' className='input' />
+                <ErrorMessage name='director' component='span' className='help' />
               </div>
-              <div>
-                <label htmlFor='metascore'>Metascore: </label>
-                <Field type='text' name='metascore' />
-                <ErrorMessage name='metascore' component='span' />
+              <div className='field'>
+                <label htmlFor='metascore' className='label'>Metascore: </label>
+                <Field type='text' name='metascore' className='input' />
+                <ErrorMessage name='metascore' component='span' className='help' />
               </div>
-              <div>
-                <label htmlFor='stars'>Stars: </label>
-                <Field type='text' name='stars' />
-                <ErrorMessage name='stars' Component='span' />
+              <div className='field'>
+                <label htmlFor='stars' className='label'>Stars: </label>
+                <Field type='text' name='stars' className='input' />
+                <ErrorMessage name='stars' Component='span' className='help' />
               </div>
-              <button type='submit' disabled={isSubmitting}>Submit</button>
+              <button type='submit' disabled={isSubmitting} className='button is-link'>Submit</button>
             </Form>
           )}
         </Formik>

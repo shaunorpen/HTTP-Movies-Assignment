@@ -7,24 +7,26 @@ export default class SavedList extends Component {
 
   render() {
     return (
-      <div className="saved-list">
-        <h3>Saved Movies:</h3>
-        {this.props.list.map(movie => {
+      <div className="level">
+        <div className='level-left'>
+          <h3 className='title'>Saved Movies:</h3>
+          {this.props.list.map(movie => {
           return (
-            <NavLink
-              to={`/movies/${movie.id}`}
-              key={movie.id}
-              activeClassName="saved-active"
-            >
-              <span className="saved-movie">{movie.title}</span>
-            </NavLink>
+          <NavLink
+          to={`/movies/${movie.id}`}
+          key={movie.id}
+          activeClassName="saved-active"
+          >
+          <div className="tile is-child">{movie.title}</div>
+          </NavLink>
           );
-        })}
-        <div className='button-container'>
-          <div className="home-button">
-            <Link to="/">Home</Link>
+          })}
+        </div>
+        <div className='level-right'>
+          <div className="button is-primary">
+           <Link to="/">Home</Link>
           </div>
-          <div className="add-movie-button">
+          <div className="button is-success">
             <Link to="/add-movie">Add Movie</Link>
           </div>
         </div>
