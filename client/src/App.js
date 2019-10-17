@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Route } from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
 import SavedList from "./Movies/SavedList";
 import MovieList from "./Movies/MovieList";
 import Movie from "./Movies/Movie";
@@ -79,10 +79,17 @@ const UpdateMovie = (props) => {
           return errors;
         }}
         onSubmit={(values, { setSubmitting }) => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            setSubmitting(false);
-          }, 400);
+          const updatedValues = {
+            ...values,
+            stars: values.stars.split(', ')
+          };
+          axios.put(`http://localhost:5000/api/movies/${props.match.params.id}`, updatedValues)
+          .then(res => {
+            props.history.push('/');
+          })
+          .catch(err => {
+            alert(err.message);
+          });
         }}
       >
         {({ isSubmitting }) => (
