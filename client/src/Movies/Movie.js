@@ -52,7 +52,7 @@ export default class Movie extends React.Component {
     }
 
     return (
-      <div className="save-wrapper">
+      <div className="container">
         <MovieCard movie={this.state.movie} />
         <div className="button is-primary" onClick={this.saveMovie}>
           Save

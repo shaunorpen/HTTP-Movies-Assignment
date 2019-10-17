@@ -14,12 +14,7 @@ const MovieCard = props => {
         <div>
           Metascore: <em>{metascore}</em>
         </div>
-        <h3>Stars</h3>
-        {stars.map(star => (
-          <div key={star}>
-            {star}
-          </div>
-        ))}
+        Stars: <em>{stars.map((star, idx, arr) => idx === arr.length - 1 ? star : star.concat(', ') )}</em>
       </div>
     </div>
   );

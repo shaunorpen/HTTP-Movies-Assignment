@@ -14,7 +14,7 @@ const App = () => {
   };
 
   return (
-    <div>
+    <div className='container'>
       <SavedList list={savedList} />
       <Route exact path="/" component={MovieList} />
       <Route
