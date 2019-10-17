@@ -90,7 +90,18 @@ body {
   color: white;
 }
 
+.button-container {
+  display: flex;
+  width: 20%;
+  justify-content: space-between;
+}
+
 .home-button {
+  padding: 5px 10px;
+  background-color: lightskyblue;
+}
+
+.add-movie-button {
   padding: 5px 10px;
   background-color: lightskyblue;
 }
