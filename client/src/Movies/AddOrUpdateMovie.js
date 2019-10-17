@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import axios from 'axios';
 
-export const UpdateMovie = (props) => {
+export const AddOrUpdateMovie = (props) => {
+    const addOrEdit = props.match.params.id ? 'Edit' : 'Add';
+
     const [initialValues, setInitialValues] = useState({
       id: '',
       title: '',
@@ -12,7 +14,7 @@ export const UpdateMovie = (props) => {
     });
   
     useEffect(() => {
-      axios
+      props.match.params.id && axios
         .get(`http://localhost:5000/api/movies/${props.match.params.id}`)
         .then(res => {
           setInitialValues({
@@ -28,7 +30,7 @@ export const UpdateMovie = (props) => {
   
     return (
       <div>
-        <h2>Edit Movie</h2>
+        <h2>{addOrEdit} Movie</h2>
         <Formik key={initialValues.id}
           initialValues = {initialValues}
           validate = {values => {
@@ -47,18 +49,34 @@ export const UpdateMovie = (props) => {
             }
             return errors;
           }}
-          onSubmit={(values, { setSubmitting }) => {
-            const updatedValues = {
-              ...values,
-              stars: values.stars.split(', ')
-            };
-            axios.put(`http://localhost:5000/api/movies/${props.match.params.id}`, updatedValues)
-            .then(res => {
-              props.history.push(`/movies/${values.id}`);
-            })
-            .catch(err => {
-              alert(err.message);
-            });
+          onSubmit={values => {
+            if (addOrEdit === 'Edit') {
+              const updatedValues = {
+                ...values,
+                stars: values.stars.split(', ')
+              };
+              axios.put(`http://localhost:5000/api/movies/${props.match.params.id}`, updatedValues)
+              .then(res => {
+                props.history.push(`/movies/${values.id}`);
+                values = initialValues;
+              })
+              .catch(err => {
+                alert(err.message);
+              });
+            } else {
+              const newMovie = {
+                ...values,
+                stars: values.stars.split(', ')
+              };
+              axios.post('http://localhost:5000/api/movies', newMovie)
+              .then(res => {
+                props.history.push('/');
+                values = initialValues;
+              })
+              .catch(err => {
+                alert(err.message);
+              });
+            }
           }}
         >
           {({ isSubmitting }) => (
