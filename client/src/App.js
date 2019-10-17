@@ -85,7 +85,7 @@ const UpdateMovie = (props) => {
           };
           axios.put(`http://localhost:5000/api/movies/${props.match.params.id}`, updatedValues)
           .then(res => {
-            props.history.push('/');
+            props.history.push(`/movies/${values.id}`);
           })
           .catch(err => {
             alert(err.message);
