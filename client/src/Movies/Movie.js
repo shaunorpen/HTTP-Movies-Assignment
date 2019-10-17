@@ -49,6 +49,9 @@ export default class Movie extends React.Component {
         <div className="edit-button" onClick={this.editMovie}>
           Edit
         </div>
+        <div className="delete-button" onClick={this.deleteMovie}>
+          Delete
+        </div>
       </div>
     );
   }
